@@ -1,0 +1,38 @@
+services:
+  app:
+    image: laravel-api:dev
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: travelia-laravel-app
+    volumes:
+      # - ./:/var/www/html
+      - ./src:/var/www/html
+    working_dir: /var/www/html
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    tty: true # Enable keeping interactive if docker exec
+    stdin_open: true # Lo mismo
+    environment:
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+
+  db:
+    image: mysql:8.0
+    container_name: travelia-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
+    ports:
+      - "3307:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+
+volumes:
+  dbdata:

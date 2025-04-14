@@ -1,0 +1,29 @@
+# Laravel
+/vendor
+/node_modules
+/public/storage
+/storage/*.key
+.env
+.env.*.backup
+Homestead.json
+Homestead.yaml
+
+# Laravel IDE Helper
+.phpstorm.meta.php
+
+# Cache y logs
+/storage/logs/*
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+
+# Docker
+docker/mysql/data
+docker/nginx/logs
+docker/php-fpm/logs
+
+# Composer
+composer.phar
+
+# Otros
+.DS_Store
